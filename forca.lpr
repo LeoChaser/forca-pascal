@@ -664,7 +664,7 @@ begin
    begin
     //inicia aleatoriedade (para escolher uma das palavras do enigma); comeca do 0
     Randomize;
-    aleatorio:=random(3)+1;
+    aleatorio:=random(5)+1;
     clrscr;
     writeln('========== Menu ===========');
     writeln;
