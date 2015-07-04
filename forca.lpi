@@ -22,6 +22,7 @@
       <UseVersionInfo Value="True"/>
       <MajorVersionNr Value="2"/>
       <MinorVersionNr Value="3"/>
+      <RevisionNr Value="3"/>
       <Language Value="0416"/>
       <StringTable CompanyName="Leonardo Alencar" FileDescription="Jogo de Forca" InternalName="forca" ProductName="Forca" ProductVersion="2.3"/>
     </VersionInfo>

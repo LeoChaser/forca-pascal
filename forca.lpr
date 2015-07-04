@@ -385,7 +385,9 @@ begin
       writeln('"/"     - sair.');
       writeln;
       estagio1;
-      showdica;
+      writeln;
+      writeln;
+      writeln;
       showchutes;
       getchute;
      end
@@ -396,7 +398,14 @@ begin
       writeln('"/"     - sair.');
       writeln;
       estagio3;
-      showdica;
+      if dfc='facil' then
+       showdica
+      else
+       begin
+        writeln;
+        writeln;
+        writeln;
+       end;
       showchutes;
       getchute;
      end
@@ -607,11 +616,13 @@ begin
     writeln('"a"     - animais');
     writeln('"f"     - frutas');
     writeln('"c"     - caes');
+    writeln('"ESC"   - voltar');
     cmd:=readkey;
     case cmd of
      #65,#97:   begin modo:='animais'; menu; end;
      #70,#102:  begin modo:='frutas'; menu; end;
      #67,#99:   begin modo:='caes'; menu; end;
+     #27 : menu;
      else
       begin
        writeln('Opcao invalida!');
@@ -638,12 +649,14 @@ begin
     writeln('"m"     - moderada');
     writeln('"f"     - facil');
     writeln('"x"     - desafio');
+    writeln('"ESC"   - voltar');
     cmd:=readkey;
     case cmd of
      #68,#100 : begin dfc:='dificil'; menu; end;
      #77,#109 : begin dfc:='moderada'; menu; end;
      #70,#102 : begin dfc:='facil'; menu; end;
      #88,#120 : begin dfc:='desafio'; menu; end;
+     #27 : menu;
      else
       begin
        writeln('Opcao invalida!');
