@@ -41,7 +41,7 @@ writeln('                    ___.______%_|            |_______  _____');
 writeln('                  _/                                 \|     |');
 writeln('                 |                  ',nome);
 writeln('                 |_____.-.______              ____/|________|');
-writeln('                                | * ',dia,'/',mes,'/',ano[3],'',ano[4],' |');
+writeln('                                | * ',dia,'/',mes,'/',ano[3]+ano[4],' |');
 writeln('                                | + 04/06/15 |');
 writeln('                                |            |');
 writeln('                                |   _        <');
@@ -361,16 +361,24 @@ begin
    chuteerr[i]:='_';
 end;
 
-procedure jogofacil;
+procedure statusjogo;
 begin
+  writeln('Difc: ',dfc,' Modo: ',modo);
+  writeln('"/"     - sair.');
+  writeln;
+end;
+
+//codigo base do jogo
+procedure forca;
+begin
+  gerador;
   while(acertos<>tamanho)do
    begin
     if erros=0 then
      begin
       clrscr;
       titulojogo;
-      writeln('"/"     - sair.');
-      writeln;
+      statusjogo;
       estagio0;
       writeln;
       writeln;
@@ -382,8 +390,7 @@ begin
      begin
       clrscr;
       titulojogo;
-      writeln('"/"     - sair.');
-      writeln;
+      statusjogo;
       estagio1;
       writeln;
       writeln;
@@ -395,13 +402,22 @@ begin
      begin
       clrscr;
       titulojogo;
-      writeln('"/"     - sair.');
-      writeln;
-      estagio3;
+      statusjogo;
       if dfc='facil' then
-       showdica
+       begin
+        estagio3;
+        showdica;
+       end
+      else if dfc='dificil' then
+       begin
+        estagio2;
+        writeln;
+        writeln;
+        writeln;
+       end
       else
        begin
+        estagio3;
         writeln;
         writeln;
         writeln;
@@ -413,171 +429,55 @@ begin
      begin
       clrscr;
       titulojogo;
-      writeln('"/"     - sair.');
-      writeln;
-      estagio6;
-      showdica;
+      statusjogo;
+      if dfc='dificil' then
+       begin
+        estagio3;
+        writeln;
+        writeln;
+        writeln;
+       end
+      else if dfc='moderado' then
+       begin
+        estagio4;
+        showdica;
+       end
+      else
+       begin
+        estagio6;
+        showdica;
+       end;
       showchutes;
       getchute;
      end
     else if erros=4 then
      begin
-      venceu:=false;
-      fim;
-     end;
-   end;
-  venceu:=true;
-  fim;
-end;
-
-procedure jogomoderado;
-begin
-  while(acertos<>tamanho)do
-   begin
-    if erros=0 then
-     begin
+      if not(dfc='moderado') and not(dfc='dificil') then
+       begin
+        venceu:=false;
+        fim;
+       end;
       clrscr;
       titulojogo;
-      writeln('"/"     - sair.');
-      writeln;
-      estagio0;
-      writeln;
-      writeln;
-      writeln;
-      showchutes;
-      getchute;
-     end
-    else if erros=1 then
-     begin
-      clrscr;
-      titulojogo;
-      writeln('"/"     - sair.');
-      writeln;
-      estagio1;
-      writeln;
-      writeln;
-      writeln;
-      showchutes;
-      getchute;
-     end
-    else if erros=2 then
-     begin
-      clrscr;
-      titulojogo;
-      writeln('"/"     - sair.');
-      writeln;
-      estagio3;
-      writeln;
-      writeln;
-      writeln;
-      showchutes;
-      getchute;
-     end
-    else if erros=3 then
-     begin
-      clrscr;
-      titulojogo;
-      writeln('"/"     - sair.');
-      writeln;
-      estagio4;
-      showdica;
-      showchutes;
-      getchute;
-     end
-    else if erros=4 then
-     begin
-      clrscr;
-      titulojogo;
-      writeln('"/"     - sair.');
-      writeln;
-      estagio6;
+      statusjogo;
+      if dfc='dificil' then
+       estagio4
+      else
+       estagio6;
       showdica;
       showchutes;
       getchute;
      end
     else if erros=5 then
      begin
-      venceu:=false;
-      fim;
-     end;
-   end;
-  venceu:=true;
-  fim;
-end;
-
-procedure jogodificil;
-begin
-  while(acertos<>tamanho)do
-   begin
-    if erros=0 then
-     begin
+      if dfc='moderado' then
+       begin
+        venceu:=false;
+        fim;
+       end;
       clrscr;
       titulojogo;
-      writeln('"/"     - sair.');
-      writeln;
-      estagio0;
-      writeln;
-      writeln;
-      writeln;
-      showchutes;
-      getchute;
-     end
-    else if erros=1 then
-     begin
-      clrscr;
-      titulojogo;
-      writeln('"/"     - sair.');
-      writeln;
-      estagio1;
-      writeln;
-      writeln;
-      writeln;
-      showchutes;
-      getchute;
-     end
-    else if erros=2 then
-     begin
-      clrscr;
-      titulojogo;
-      writeln('"/"     - sair.');
-      writeln;
-      estagio2;
-      writeln;
-      writeln;
-      writeln;
-      showchutes;
-      getchute;
-     end
-    else if erros=3 then
-     begin
-      clrscr;
-      titulojogo;
-      writeln('"/"     - sair.');
-      writeln;
-      estagio3;
-      writeln;
-      writeln;
-      writeln;
-      showchutes;
-      getchute;
-     end
-    else if erros=4 then
-     begin
-      clrscr;
-      titulojogo;
-      writeln('"/"     - sair.');
-      writeln;
-      estagio4;
-      showdica;
-      showchutes;
-      getchute;
-     end
-    else if erros=5 then
-     begin
-      clrscr;
-      titulojogo;
-      writeln('"/"     - sair.');
-      writeln;
+      statusjogo;
       estagio6;
       showdica;
       showchutes;
@@ -591,17 +491,6 @@ begin
    end;
   venceu:=true;
   fim;
-end;
-
-//codigo base do jogo
-procedure forca;
-begin
-  gerador;
-  case dfc of
-    'moderada':jogomoderado;
-    'dificil':jogodificil;
-    else jogofacil;
-  end;
 end;
 
 procedure menumodo;
@@ -759,12 +648,12 @@ begin
   titulojogo;
   write('Digite seu primeiro nome: ');
   readln(nome);
-  write('Digite o ano em que nasceu: ');
-  readln(ano);
-  write('Digite o dia em que nasceu: ');
+  write('Digite o dia em que nasceu (DD): ');
   readln(dia);
-  write('Digite o mes em que nasceu: ');
+  write('Digite o mes em que nasceu (MM): ');
   readln(mes);
+  write('Digite o ano em que nasceu (AAAA): ');
+  readln(ano);
   writeln;
   writeln;
   delay(1000);
