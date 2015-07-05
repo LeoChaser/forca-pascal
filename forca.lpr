@@ -269,8 +269,8 @@ begin
     writeln('Tem certeza que deseja sair? S/N');
     cmd:=readkey;
     case cmd of
-     //tecla 's' pressionada; fecha o programa
-     #83,#115 : fechar;
+     //tecla 's' pressionada; volta pro menu de opcoes
+     #83,#115 : menu;
      //tecla 'n' pressionada; cancela
      #78,#110 : exit;
      else
